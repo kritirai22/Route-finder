@@ -49,26 +49,28 @@ vector<vector<int> > graph =
     {INF,INF,INF,INF,INF,33,72,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,0,41},
     {INF,INF,INF,INF,13,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,41,0}
 };
-vector<string> names={ "Marine Drive",
-    "Bandra-Worli Sea Link",
-    "Gateway of India",
-    "Phoenix Marketcity",
-    "Infiniti Mall",
-    "Red Carpet Wax Museum",
-    "Haji Ali Dargah",
-    "Siddhivinayak Temple",
-    "Chhatrapati Shivaji Terminus",
-    "Sanjay Gandhi National Park",
-    "ISKCON Temple",
-    "Girgaon Chowpatty",
-    "Shri Mahalakshmi Temple",
-    "Powai Lake",
-    "Nehru Center",
-    "Kidzania",
-    "Taraporewala Aquarium",
-    "Veermata Jijabai Bhosale Zoo",
-    "Essel World",
-    "Juhu Beach"
+
+//DELHI NCR PLACES 
+vector<string> names={ "Mehrauli",
+    "Badarpur",
+    "Greater Kailash 2",
+    "Palika Bazaar",
+    "India Gate",
+    "Rajouri Garden",
+    "Hauz Khas Enclave",
+    "Sarojini Nagar",
+    "Connaught Place",
+    "Saket",
+    "Indirapuram",
+    "Govindpuri",
+    "Sadar Bazaar",
+    "Pitam Pura",
+    "Noida",
+    "Karol Bagh",
+    "Tilaknagar",
+    "Vijaynagar",
+    "Electronic City",
+    "Jahangirpuri"
 };
 
 
