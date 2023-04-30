@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include"trie.cpp"
 #include<conio.h>
 
 using namespace std;
@@ -48,6 +49,29 @@ vector<vector<int> > graph =
     {INF,INF,INF,INF,INF,33,72,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,0,41},
     {INF,INF,INF,INF,13,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,INF,41,0}
 };
+vector<string> names={ "Marine Drive",
+    "Bandra-Worli Sea Link",
+    "Gateway of India",
+    "Phoenix Marketcity",
+    "Infiniti Mall",
+    "Red Carpet Wax Museum",
+    "Haji Ali Dargah",
+    "Siddhivinayak Temple",
+    "Chhatrapati Shivaji Terminus",
+    "Sanjay Gandhi National Park",
+    "ISKCON Temple",
+    "Girgaon Chowpatty",
+    "Shri Mahalakshmi Temple",
+    "Powai Lake",
+    "Nehru Center",
+    "Kidzania",
+    "Taraporewala Aquarium",
+    "Veermata Jijabai Bhosale Zoo",
+    "Essel World",
+    "Juhu Beach"
+};
+
+
 
 //functions
 void initialise();
@@ -55,47 +79,57 @@ void print_graph();
 void floydWarshall();
 vector<string> constructing_path(int u,int v);
 void print_path(vector<string>& path);
-void path_finder();
+void path_finder(Trie T);
 int name_to_integer(string s);
 void nearby();
 void f1(int s,int p[],int n);
-void visit_all_destinations();
+void visit_all_destinations(Trie T);
 void max_place_time_bound();
+bool check_number(string str);
 
 // Driver code
 int main()
-{
+{   
+    // initialising Trie
+    Trie T;
+    for (string name : names) {
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
+        T.insert(name);
+    }
+
+
     //initilise the variables
     initialise();
-
+    
     //call function for floyd warshall
     floydWarshall();
 
     //loop to repeat itself until the 'break' statement is called
     while(1)
     {
-        system("cls");
-
         //menu
-        cout<<"Route Finder"<<endl<<endl;
-        cout<<"Enter Your Choice"<<endl;
+        cout<<endl<<endl<<endl;
+        cout<<"******  Route Finder ********"<<endl<<endl;
+        cout<<"Enter Your Choice"<<endl<<endl;
         cout<<"1. Find best path from source to destination"<<endl;
         cout<<"2. Find best path to visit all the destinations you want "<<endl;
         cout<<"3. Visit maximum places (time bound)"<<endl;
-        cout<<"4. Exit"<<endl;
+        cout<<"4. Exit"<<endl<<endl;
+        cout<< "Your choice is : ";
 
         //call for functions using conditions
         int n;
         cin>>n;
         if(n==1)
-            path_finder();
+            path_finder(T);
         else if(n==2)
-            visit_all_destinations();
+            visit_all_destinations(T);
         else if(n==3)
             max_place_time_bound();
         else break;
         cout<<"\n\npress any return to main menu";
         getch();
+        system("cls");
     }
     //driver code ends
 }
@@ -111,27 +145,6 @@ void initialise()
     int ct[]={24,9,10,2,12,10,11,10,10,12,9,1,24,10,9,5,9,8,6,7};
 
     //name list for the destinations
-    vector<string> names={ "Marine Drive",
-                "Bandra-Worli Sea Link",
-                "Gateway of India",
-                "Phoenix Marketcity",
-                "Infiniti Mall",
-                "Red Carpet Wax Museum",
-                "Haji Ali Dargah",
-                "Siddhivinayak Temple",
-                "Chhatrapati Shivaji Terminus",
-                "Sanjay Gandhi National Park",
-                "ISKCON Temple",
-                "Girgaon Chowpatty",
-                "Shri Mahalakshmi Temple",
-                "Powai Lake",
-                "Nehru Center",
-                "Kidzania",
-                "Taraporewala Aquarium",
-                "Veermata Jijabai Bhosale Zoo",
-                "Essel World",
-                "Juhu Beach"
-            };
 
     //entering the values in the object of the class 'places'
     for(int i=0;i<MAXN;i++)
@@ -158,6 +171,7 @@ void initialise()
             }
         }
     }
+
 }
 
 //print the graph/map
@@ -228,25 +242,59 @@ void print_path(vector<string>& path)
     cout << path[n - 1] << endl;
 }
 
-//function to find path
-void path_finder()
+void path_finder(Trie T)
 {
     //declaring data members
     int s,d;
     string st,dt;
     vector<string> path;
-
+   
+    
+    bool ok2 = false;
+    
+    bool ok4 = false;
+    
     //taking source and destination from user
     cin.ignore();
-    cout<<"ENTER SOURCE:";
-    getline(cin,st);
-    //cin.ignore();
-    cout<<"ENTER DESTINATION:";
-    getline(cin,dt);
+    cout<<"ENTER SOURCE:  ";
+    bool ok1 = false;
+    do{
+        ok1 = false;
+        getline(cin,st);
+        if(check_number(st)) {
+            ok1 = true;
+            cout<<"Enter valid source..";
+        }
+    }while(ok1);
+    
+    for (string w : T.search_pre(st))
+    {
+        cout<<name_to_integer(w)<<". "<<w<<"\n";
+    }
+    cout<<"\nCHOOSE A NUMBER: ";
+    cin>>s;
+
+    cin.ignore();
+    cout<<"ENTER DESTINATION:  ";
+    bool ok3 = false;
+    do{
+        ok3 = false;
+        getline(cin,dt);
+        if(check_number(dt)) {
+            ok3 = true;
+            cout<<"Enter valid destination..";
+        }
+    }while(ok3);
+
+    for (string w : T.search_pre(dt))
+    {
+        cout<<name_to_integer(w)<<". "<<w<<"\n";
+    }
+    cout<<"\nCHOOSE A NUMBER: ";
+    cin>>d;
 
     //converting location names to integer values to work in array
-    s = name_to_integer(st);
-    d = name_to_integer(dt);
+
 
     cout << "\nShortest path from "<<node[s].name<<" to "<<node[d].name<<" is\n\n ";
 
@@ -265,51 +313,17 @@ int name_to_integer(string s)
     an integer is given to program
     integer value represent the index of graph
     */
-    if(s=="Marine Drive")
-        return 0;
-    else if(s=="Bandra-Worli Sea Link")
-        return 1;
-    else if(s=="Gateway of India")
-        return 2;
-    else if(s=="Phoenix Marketcity")
-        return 3;
-    else if(s=="Infiniti Mall")
-        return 4;
-    else if(s=="Red Carpet Wax Museum")
-        return 5;
-    else if(s=="Haji Ali Dargah")
-        return 6;
-    else if(s=="Siddhivinayak Temple")
-        return 7;
-    else if(s=="Chhatrapati Shivaji Terminus")
-        return 8;
-    else if(s=="Sanjay Gandhi National Park")
-        return 9;
-    else if(s=="ISKCON Temple")
-        return 10;
-    else if(s=="Girgaon Chowpatty")
-        return 11;
-    else if(s=="Shri Mahalakshmi Temple")
-        return 12;
-    else if(s=="Powai Lake")
-        return 13;
-    else if(s=="Nehru Center")
-        return 14;
-    else if(s=="Kidzania")
-        return 15;
-    else if(s=="Taraporewala Aquarium")
-        return 16;
-    else if(s=="Veermata Jijabai Bhosale Zoo")
-        return 17;
-    else if(s=="Essel World")
-        return 18;
-    else if(s=="Juhu Beach")
-        return 19;
-    //if the given string is not found, -1 is returned
-    else
-        return -1;
+    for (int i=0; i<20; i++) {
+        string name = names[i];
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
+        if(s==name){
+            return i;
+        }
+    }
+    return -1;
 
 }
+
 
 
 
@@ -356,35 +370,59 @@ void f1(int s,int p[],int n)
 }
 
 //function for finding out the best path to visit all the destinations
-void visit_all_destinations()
+void visit_all_destinations(Trie T)
 {
+    system("cls");
+    cout<<endl<<endl<<endl;
+    cout<<"******  Route Finder ********"<<endl<<endl<<endl;
     //taking the starting location
-    int s;
+    int s,d;
     string st;
     cin.ignore();
-    cout<<"your location:";
+    cout<<"your location : ";
     getline(cin,st);
-    s = name_to_integer(st);
-
+    for (string w : T.search_pre(st))
+    {
+        cout<<name_to_integer(w)<<". "<<w<<"\n";
+    }
+    cout<<endl;
+    cout<<"\nCHOOSE A NUMBER: ";
+    cin>>s;
+    cin.ignore();
     //taking the number of places user want to visit
     int n;
-    cout<<"No. of places you want to visit:";
+    cout<<endl<<endl<<endl;
+    cout<<"No. of places you want to visit : ";
     cin>>n;
-
+    system("cls");
+    cout<<endl<<endl<<endl;
+    cout<<"******  Route Finder ********"<<endl<<endl<<endl;
     //takinng the places the user want to visit
     int p[n];
     string in;
-    cout<<"Please enter the places:";
-    cin.ignore();
+    
+    
     for(int i=0;i<n;i++)
     {
+        cout<<"Please enter the place "<< i+1 <<" : " << endl<<endl;
+        cin.ignore();
         getline(cin,in);
-        p[i] = name_to_integer(in);
+        for (string w : T.search_pre(in)){
+            cout<<name_to_integer(w)<<". "<<w<<"\n";
+        }
+        cout<<"\nCHOOSE A NUMBER: ";
+        cin>>d;
+        cout<<endl<<endl;
+        p[i]= d;
     }
 
     //solution
-    cout<<"You can choose this path:";
+    system("cls");
+    cout<<endl<<endl<<endl;
+    cout<<"******  Route Finder ********"<<endl<<endl<<endl;
+    cout<<"You can choose this path : "<<endl<<endl;
     f1(s,p,n);
+    cout<<endl<<endl;
 }
 
 //visiting the maximum places with time bound condition
@@ -445,5 +483,11 @@ void max_place_time_bound()
     }
 }
 
+bool check_number(string str) {
+   for (int i = 0; i < str.length(); i++)
+   if (isdigit(str[i]) == false)
+      return false;
+      return true;
+}
 
 /* CODE END */
