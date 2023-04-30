@@ -92,6 +92,9 @@ bool check_number(string str);
 // Driver code
 int main()
 {   
+
+
+
     // initialising Trie
     Trie T;
     for (string name : names) {
@@ -111,7 +114,13 @@ int main()
     {
         //menu
         cout<<endl<<endl<<endl;
-        cout<<"******  Route Finder ********"<<endl<<endl;
+cout<<"  d88888b db    db d8888b. db       .d88b.  d8888b. d88888b      d8b   db     .o88b.    d8888b. \n";
+cout<<"  88'     `8b  d8' 88  `8D 88      .8P  Y8. 88  `8D 88'          888o  88    d8P  Y8    88  `8D \n";
+cout<<"  88ooooo  `8bd8'  88oodD' 88      88    88 88oobY' 88ooooo      88V8o 88    8P         88oobY' \n";
+cout<<"  88~~~~~  .dPYb.  88~~~   88      88    88 88`8b   88~~~~~      88 V8o88    8b         88`8b   \n";
+cout<<"  88.     .8P  Y8. 88      88booo. `8b  d8' 88 `88. 88.          88  V888 db Y8b  d8 db 88 `88. \n";
+cout<<"  Y88888P YP    YP 88      Y88888P  `Y88P'  88   YD Y88888P      VP   V8P VP  `Y88P' VP 88   YD \n";
+        cout<<endl<<endl;
         cout<<"Enter Your Choice"<<endl<<endl;
         cout<<"1. Find best path from source to destination"<<endl;
         cout<<"2. Find best path to visit all the destinations you want "<<endl;
