@@ -73,8 +73,6 @@ vector<string> names={ "Mehrauli",
     "Jahangirpuri"
 };
 
-
-
 //functions
 void initialise();
 void print_places();
@@ -91,10 +89,7 @@ void max_place_time_bound();
 bool check_number(string str);
 
 // Driver code
-int main()
-{   
-
-
+int main(){
 
     // initialising Trie
     Trie T;
@@ -102,7 +97,6 @@ int main()
         transform(name.begin(), name.end(), name.begin(), ::tolower);
         T.insert(name);
     }
-
 
     //initilise the variables
     initialise();
@@ -115,12 +109,12 @@ int main()
     {
         //menu
         cout<<endl<<endl<<endl;
-cout<<"  d88888b db    db d8888b. db       .d88b.  d8888b. d88888b      d8b   db     .o88b.    d8888b. \n";
-cout<<"  88'     `8b  d8' 88  `8D 88      .8P  Y8. 88  `8D 88'          888o  88    d8P  Y8    88  `8D \n";
-cout<<"  88ooooo  `8bd8'  88oodD' 88      88    88 88oobY' 88ooooo      88V8o 88    8P         88oobY' \n";
-cout<<"  88~~~~~  .dPYb.  88~~~   88      88    88 88`8b   88~~~~~      88 V8o88    8b         88`8b   \n";
-cout<<"  88.     .8P  Y8. 88      88booo. `8b  d8' 88 `88. 88.          88  V888 db Y8b  d8 db 88 `88. \n";
-cout<<"  Y88888P YP    YP 88      Y88888P  `Y88P'  88   YD Y88888P      VP   V8P VP  `Y88P' VP 88   YD \n";
+        cout<<"  d88888b db    db d8888b. db       .d88b.  d8888b. d88888b      d8b   db     .o88b.    d8888b. \n";
+        cout<<"  88'     `8b  d8' 88  `8D 88      .8P  Y8. 88  `8D 88'          888o  88    d8P  Y8    88  `8D \n";
+        cout<<"  88ooooo  `8bd8'  88oodD' 88      88    88 88oobY' 88ooooo      88V8o 88    8P         88oobY' \n";
+        cout<<"  88~~~~~  .dPYb.  88~~~   88      88    88 88`8b   88~~~~~      88 V8o88    8b         88`8b   \n";
+        cout<<"  88.     .8P  Y8. 88      88booo. `8b  d8' 88 `88. 88.          88  V888 db Y8b  d8 db 88 `88. \n";
+        cout<<"  Y88888P YP    YP 88      Y88888P  `Y88P'  88   YD Y88888P      VP   V8P VP  `Y88P' VP 88   YD \n";
         cout<<endl<<endl;
         cout<<"Enter Your Choice"<<endl<<endl;
         cout<<"1. Available destinations of NCR"<<endl;
@@ -194,22 +188,22 @@ void print_places(){
     cout<<"1. Mehrauli"<<endl;
     cout<<"2. Greater Kailash 2"<<endl;
     cout<<"3. Badarpur"<<endl;
-    cout<<"4. Palika Bazaar/n"<<endl;
-    cout<<"5. India Gate,"<<endl;
-    cout<<"6. Rajouri Garden,"<<endl;
-    cout<<"7. Hauz Khas Enclave,"<<endl;
-    cout<<"8. Sarojini Nagar,"<<endl;
-    cout<<"9. Connaught Place,"<<endl;
-    cout<<"10. Saket,"<<endl;
-    cout<<"11. Indirapuram,"<<endl;
-    cout<<"12. Govindpuri,"<<endl;
-    cout<<"13. Sadar Bazaar,"<<endl;
-    cout<<"14. Pitam Pura,"<<endl;
-    cout<<"15. Noida,"<<endl;
-    cout<<"16. Karol Bagh,"<<endl;
-    cout<<"17. Tilaknagar,"<<endl;
-    cout<<"18. Vijaynagar,"<<endl;
-    cout<<"19. Electronic City,"<<endl;
+    cout<<"4. Palika Bazaar"<<endl;
+    cout<<"5. India Gate"<<endl;
+    cout<<"6. Rajouri Garden"<<endl;
+    cout<<"7. Hauz Khas Enclave"<<endl;
+    cout<<"8. Sarojini Nagar"<<endl;
+    cout<<"9. Connaught Place"<<endl;
+    cout<<"10. Saket"<<endl;
+    cout<<"11. Indirapuram"<<endl;
+    cout<<"12. Govindpuri"<<endl;
+    cout<<"13. Sadar Bazaar"<<endl;
+    cout<<"14. Pitam Pura"<<endl;
+    cout<<"15. Noida"<<endl;
+    cout<<"16. Karol Bagh"<<endl;
+    cout<<"17. Tilaknagar"<<endl;
+    cout<<"18. Vijaynagar"<<endl;
+    cout<<"19. Electronic City"<<endl;
     cout<<"20. Jahangirpuri"<<endl;
 }
 
@@ -285,14 +279,10 @@ void path_finder(Trie T)
 {
     //declaring data members
     int s,d;
+    string ss,dd;
     string st,dt;
     vector<string> path;
    
-    
-    bool ok2 = false;
-    
-    bool ok4 = false;
-    
     //taking source and destination from user
     cin.ignore();
     cout<<"ENTER SOURCE:  ";
@@ -311,8 +301,17 @@ void path_finder(Trie T)
         cout<<name_to_integer(w)<<". "<<w<<"\n";
     }
     cout<<"\nCHOOSE A NUMBER: ";
-    cin>>s;
-
+    bool ok2 = false;
+    do{
+        ok2=false;
+        getline(cin,ss);
+        if(check_number(ss)) continue;
+        else {
+            ok2=true;
+            cout<<"Enter valid input number..";
+        }
+    }while(ok2);
+    
     cin.ignore();
     cout<<"ENTER DESTINATION:  ";
     bool ok3 = false;
@@ -330,10 +329,20 @@ void path_finder(Trie T)
         cout<<name_to_integer(w)<<". "<<w<<"\n";
     }
     cout<<"\nCHOOSE A NUMBER: ";
-    cin>>d;
+    bool ok4 = false;
+    do{
+        ok4=false;
+        getline(cin,dd);
+        if(check_number(dd)) continue;
+        else {
+            ok4=true;
+            cout<<"Enter valid input number..";
+        }
+    }while(ok4);  
 
     //converting location names to integer values to work in array
-
+    s=stoi(ss);
+    d=stoi(dd);
 
     cout << "\nShortest path from "<<node[s].name<<" to "<<node[d].name<<" is\n\n ";
 
@@ -362,9 +371,6 @@ int name_to_integer(string s)
     return -1;
 
 }
-
-
-
 
 //function for finding path for n places starting from source s
 void f1(int s,int p[],int n)
@@ -416,17 +422,36 @@ void visit_all_destinations(Trie T)
     cout<<"******  Route Finder ********"<<endl<<endl<<endl;
     //taking the starting location
     int s,d;
-    string st;
+    string ss,dd,st;
     cin.ignore();
     cout<<"your location : ";
-    getline(cin,st);
+    bool ok1 = false;
+    do{
+        ok1 = false;
+        getline(cin,st);
+        if(check_number(st)) {
+            ok1 = true;
+            cout<<"Enter valid location name..";
+        }
+    }while(ok1);
+    
     for (string w : T.search_pre(st))
     {
         cout<<name_to_integer(w)<<". "<<w<<"\n";
     }
     cout<<endl;
     cout<<"\nCHOOSE A NUMBER: ";
-    cin>>s;
+    bool ok2 = false;
+    do{
+        ok2=false;
+        getline(cin,ss);
+        if(check_number(ss)) continue;
+        else {
+            ok2=true;
+            cout<<"Enter valid input number..";
+        }
+    }while(ok2);
+    s=stoi(ss);
     cin.ignore();
     //taking the number of places user want to visit
     int n;
@@ -440,17 +465,34 @@ void visit_all_destinations(Trie T)
     int p[n];
     string in;
     
-    
     for(int i=0;i<n;i++)
     {
         cout<<"Please enter the place "<< i+1 <<" : " << endl<<endl;
         cin.ignore();
+        bool ok1 = false;
+        do{
+        ok1 = false;
         getline(cin,in);
+        if(check_number(in)) {
+            ok1 = true;
+            cout<<"Enter valid location name..";
+            }
+        }while(ok1);
         for (string w : T.search_pre(in)){
             cout<<name_to_integer(w)<<". "<<w<<"\n";
         }
         cout<<"\nCHOOSE A NUMBER: ";
-        cin>>d;
+        bool ok2 = false;
+        do{
+            ok2=false;
+            getline(cin,dd);
+            if(check_number(dd)) continue;
+            else {
+            ok2=true;
+            cout<<"Enter valid input number..";
+            }
+        }while(ok2);
+        d=stoi(dd);
         cout<<endl<<endl;
         p[i]= d;
     }
