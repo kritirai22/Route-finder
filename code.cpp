@@ -77,6 +77,7 @@ vector<string> names={ "Mehrauli",
 
 //functions
 void initialise();
+void print_places();
 void print_graph();
 void floydWarshall();
 vector<string> constructing_path(int u,int v);
@@ -122,20 +123,23 @@ cout<<"  88.     .8P  Y8. 88      88booo. `8b  d8' 88 `88. 88.          88  V888
 cout<<"  Y88888P YP    YP 88      Y88888P  `Y88P'  88   YD Y88888P      VP   V8P VP  `Y88P' VP 88   YD \n";
         cout<<endl<<endl;
         cout<<"Enter Your Choice"<<endl<<endl;
-        cout<<"1. Find best path from source to destination"<<endl;
-        cout<<"2. Find best path to visit all the destinations you want "<<endl;
-        cout<<"3. Visit maximum places (time bound)"<<endl;
-        cout<<"4. Exit"<<endl<<endl;
+        cout<<"1. Available destinations of NCR"<<endl;
+        cout<<"2. Find best path from source to destination"<<endl;
+        cout<<"3. Find best path to visit all the destinations you want "<<endl;
+        cout<<"4. Visit maximum places (time bound)"<<endl;
+        cout<<"5. Exit"<<endl<<endl;
         cout<< "Your choice is : ";
 
         //call for functions using conditions
         int n;
         cin>>n;
         if(n==1)
-            path_finder(T);
+            print_places();
         else if(n==2)
-            visit_all_destinations(T);
+            path_finder(T);
         else if(n==3)
+            visit_all_destinations(T);
+        else if(n==4)
             max_place_time_bound();
         else break;
         cout<<"\n\npress any return to main menu";
@@ -183,6 +187,30 @@ void initialise()
         }
     }
 
+}
+
+void print_places(){
+    cout<<"Here is the available destinations list:"<<endl;
+    cout<<"1. Mehrauli"<<endl;
+    cout<<"2. Greater Kailash 2"<<endl;
+    cout<<"3. Badarpur"<<endl;
+    cout<<"4. Palika Bazaar/n"<<endl;
+    cout<<"5. India Gate,"<<endl;
+    cout<<"6. Rajouri Garden,"<<endl;
+    cout<<"7. Hauz Khas Enclave,"<<endl;
+    cout<<"8. Sarojini Nagar,"<<endl;
+    cout<<"9. Connaught Place,"<<endl;
+    cout<<"10. Saket,"<<endl;
+    cout<<"11. Indirapuram,"<<endl;
+    cout<<"12. Govindpuri,"<<endl;
+    cout<<"13. Sadar Bazaar,"<<endl;
+    cout<<"14. Pitam Pura,"<<endl;
+    cout<<"15. Noida,"<<endl;
+    cout<<"16. Karol Bagh,"<<endl;
+    cout<<"17. Tilaknagar,"<<endl;
+    cout<<"18. Vijaynagar,"<<endl;
+    cout<<"19. Electronic City,"<<endl;
+    cout<<"20. Jahangirpuri"<<endl;
 }
 
 //print the graph/map
