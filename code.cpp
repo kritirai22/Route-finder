@@ -405,7 +405,7 @@ void visit_all_destinations(Trie T)
 {
     system("cls");
     cout<<endl<<endl<<endl;
-    cout<<"******  Route Finder ********"<<endl<<endl<<endl;
+    cout<<"****** Explore N.C.R ********"<<endl<<endl<<endl;
     //taking the starting location
     int s,d;
     string ss,dd,st;
@@ -446,7 +446,7 @@ void visit_all_destinations(Trie T)
     cin>>n;
     system("cls");
     cout<<endl<<endl<<endl;
-    cout<<"******  Route Finder ********"<<endl<<endl<<endl;
+    cout<<"******  Explore N.C.R ********"<<endl<<endl<<endl;
     //takinng the places the user want to visit
     int p[n];
     string in;
@@ -486,7 +486,7 @@ void visit_all_destinations(Trie T)
     //solution
     system("cls");
     cout<<endl<<endl<<endl;
-    cout<<"******  Route Finder ********"<<endl<<endl<<endl;
+    cout<<"******  Explore N.C.R ********"<<endl<<endl<<endl;
     cout<<"You can choose this path : "<<endl<<endl;
     f1(s,p,n);
     cout<<endl<<endl;
