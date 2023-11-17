@@ -8,10 +8,6 @@ using namespace std;
 #define MAXN 20
 const int INF = 1e7;
 
-/*
-2-D array to be used for
-referning the weights between destinations
-*/
 int temp[MAXN][MAXN];
 
 // Initializing the distance and
